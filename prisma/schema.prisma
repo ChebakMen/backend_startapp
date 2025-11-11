@@ -1,0 +1,53 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  
+  videos Video[]
+}
+
+model Video {
+  id          Int      @id @default(autoincrement())
+  title       String   // Название видео
+  description String?  // Описание видео (опционально)
+  filePath    String   // Путь к файлу видео
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  lines  Line[]
+  masks  Mask[]
+}
+
+model Line {
+  id      Int    @id @default(autoincrement())
+  type    String 
+  points  Json   
+
+  videoId Int
+  video   Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  
+  @@map("lines")
+}
+
+model Mask {
+  id     Int    @id @default(autoincrement())
+  points Json   
+  
+  videoId Int
+  video   Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  
+  @@map("masks")
+}
