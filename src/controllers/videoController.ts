@@ -216,6 +216,7 @@ class VideoController {
       res.status(500).json({ error: 'Ошибка при удалении видео' });
     }
   }
+  
 }
 
 export default new VideoController();

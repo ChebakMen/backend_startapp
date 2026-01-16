@@ -22,5 +22,7 @@ router.get('/video/:id',authMiddleware, VideoController.getVideoById);
 // Удаление видео
 router.delete('/video/:id', authMiddleware, VideoController.deleteVideo);
 
+// router.post('/video/:id/annotations', authMiddleware, VideoController.addAnotations);
+
 
 export default router;

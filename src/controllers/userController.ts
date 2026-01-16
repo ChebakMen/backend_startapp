@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 class UserController {
   async registration(req: Request, res: Response) {
     try {
+      console.log(req.body)
       const {email, password} = req.body
       const userData = await userService.register(email, password)
 

@@ -29,8 +29,18 @@ class UserService {
       }
     });
 
+        //УБРАТЬ .............................................................................................
+    const userWithFio = {
+      ...userWithoutPassword,
+      fio: "Иванов Иван Иванович",
+      phone: "88005553535",
+      roll:"doctor",
+
+    };
+
     const tokens = tokenService.generateTokens({userId:user.id, email:user.email})//Поменять на userWithoutPassword ///////////////////////////////////
     return  {...tokens, user:userWithoutPassword} ;
+    // return  {...tokens, user:userWithFio} ;
   }
 
 
@@ -55,8 +65,17 @@ class UserService {
       }
     });
 
+    //УБРАТЬ .............................................................................................
+    const userWithFio = {
+      ...userWithoutPassword,
+      fio: "Иванов Иван Иванович",
+      phone: "88005553535",
+      roll:"doctor",
+    };
+
     const tokens = tokenService.generateTokens({userId:user.id, email:user.email})
     return  {...tokens, user:userWithoutPassword} ;
+    // return  {...tokens, user:userWithFio} ;
   }
 }
 
